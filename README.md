@@ -1,4 +1,7 @@
-# CSM
+# AJD-CSM
+## A new ~~era~~ endpoint
+
+**2025/04/11** - Dockerization and API with CSM
 
 **2025/03/13** - We are releasing the 1B CSM variant. The checkpoint is [hosted on Hugging Face](https://huggingface.co/sesame/csm_1b).
 
