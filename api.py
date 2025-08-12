@@ -1,4 +1,5 @@
 import os
+import threading
 from typing import List, Dict, Optional, Union
 import torch
 import torchaudio
@@ -17,8 +18,9 @@ logger = logging.getLogger(__name__)
 # Initialize FastAPI app
 app = FastAPI(title="CSM Speech API", description="API for the Conversational Speech Model")
 
-# Global generator object
+# Global generator object and lock to ensure single initialization
 generator = None
+_generator_lock = threading.Lock()
 
 # Initialize device
 if torch.cuda.is_available():
@@ -28,13 +30,15 @@ else:
     device = "cpu"
     logger.info("Using CPU for inference (CUDA not available)")
 
-# Model loading happens on first request to avoid slowing startup
+# Model loading with thread-safe initialization
 def load_model():
     global generator
     if generator is None:
-        logger.info("Loading CSM model...")
-        generator = load_csm_1b(device=device)
-        logger.info("CSM model loaded successfully")
+        with _generator_lock:
+            if generator is None:
+                logger.info("Loading CSM model...")
+                generator = load_csm_1b(device=device)
+                logger.info("CSM model loaded successfully")
     return generator
 
 # Pydantic models for API requests
