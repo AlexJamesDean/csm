@@ -155,3 +155,7 @@ By using this model, you agree to comply with all applicable laws and ethical gu
 
 ## Authors
 Johan Schalkwyk, Ankit Kumar, Dan Lyth, Sefik Emre Eskimez, Zack Hodari, Cinjon Resnick, Ramon Sanabria, Raven Jiang, and the Sesame team.
+
+I fix the bugs other devs gaslight you about.
+A I tools, Five M systems, automation pipelines.
+Build it, break it, resurrect it: 👉 https://AJThe.Dev
